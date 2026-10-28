@@ -1,0 +1,6 @@
+confluent-kafka
+pika
+prometheus-client
+flask
+requests
+kubernetes
