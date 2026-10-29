@@ -1,3 +1,7 @@
-   venv/
-   __pycache__/
-   .env
+venv/
+__pycache__/
+.env
+# generated benchmark data (re-create with scripts/generate_datasets.py)
+datasets/
+.pytest_cache/
+submission.zip

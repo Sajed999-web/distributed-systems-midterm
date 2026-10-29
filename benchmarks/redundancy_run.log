@@ -1,0 +1,33 @@
+[13:36:11] --- small / rep3: resetting cluster
+[13:36:23] create bucket small-rep3: {'bucket': 'small-rep3', 'policy': 'replication N=3', 'write_quorum': 2, 'read_quorum': 2}
+[13:36:23] uploading datasets/small ...
+[13:38:03] uploaded 5000 files, 124 MB in 98.33 s (1.27 MB/s)
+[13:38:03] killing node4 and deleting its disk
+[13:38:38] repair job done: 3283/3283 chunks in 25.1 s, read 81.8 MB, wrote 81.8 MB
+[13:38:42] verified 50/50 sampled objects after repair
+[13:38:46] {"workload": "small", "scheme": "rep3", "policy": "replication N=3", "files": 5000, "logical_MB": 124.4, "unique_MB": 113.3, "physical_MB": 339.8, "stored_blobs": 13659, "storage_overhead": 3.0, "upload_MBps": 1.27, "upload_files_per_s": 50.9, "lost_on_node4_MB": 81.8, "lost_blobs": 3283, "repair_chunks": 3283, "repair_failed": 0, "repair_read_MB": 81.8, "repair_written_MB": 81.8, "repair_traffic_MB": 163.6, "repair_read_per_lost_byte": 1.0, "repair_seconds": 25.1, "detection_seconds": 9.8, "degraded_after_repair": 0, "verified": "50/50"}
+[13:38:46] --- small / ec42: resetting cluster
+[13:38:59] create bucket small-ec42: {'bucket': 'small-ec42', 'policy': 'EC 4+2', 'write_quorum': 5, 'read_quorum': 4}
+[13:38:59] uploading datasets/small ...
+[13:41:38] uploaded 5000 files, 124 MB in 157.69 s (0.79 MB/s)
+[13:41:38] killing node4 and deleting its disk
+[13:43:29] repair job done: 4553/4553 chunks in 99.2 s, read 114.0 MB, wrote 43.0 MB
+[13:43:38] verified 50/50 sampled objects after repair
+[13:43:43] {"workload": "small", "scheme": "ec42", "policy": "EC 4+2", "files": 5000, "logical_MB": 124.4, "unique_MB": 113.3, "physical_MB": 171.0, "stored_blobs": 27318, "storage_overhead": 1.51, "upload_MBps": 0.79, "upload_files_per_s": 31.7, "lost_on_node4_MB": 43.0, "lost_blobs": 6867, "repair_chunks": 4553, "repair_failed": 0, "repair_read_MB": 114.0, "repair_written_MB": 43.0, "repair_traffic_MB": 157.0, "repair_read_per_lost_byte": 2.65, "repair_seconds": 99.2, "detection_seconds": 11.7, "degraded_after_repair": 0, "verified": "50/50"}
+[13:43:43] --- large / rep3: resetting cluster
+[13:44:10] create bucket large-rep3: {'bucket': 'large-rep3', 'policy': 'replication N=3', 'write_quorum': 2, 'read_quorum': 2}
+[13:44:10] uploading datasets/large ...
+[13:45:51] uploaded 10 files, 4150 MB in 99.2 s (41.84 MB/s)
+[13:45:51] killing node4 and deleting its disk
+[13:46:36] repair job done: 602/602 chunks in 32.5 s, read 2404.0 MB, wrote 2404.0 MB
+[13:46:52] verified 3/3 sampled objects after repair
+[13:47:01] {"workload": "large", "scheme": "rep3", "policy": "replication N=3", "files": 10, "logical_MB": 4150.0, "unique_MB": 3432.0, "physical_MB": 10292.0, "stored_blobs": 2579, "storage_overhead": 2.999, "upload_MBps": 41.84, "upload_files_per_s": 0.1, "lost_on_node4_MB": 2400.0, "lost_blobs": 601, "repair_chunks": 602, "repair_failed": 0, "repair_read_MB": 2404.0, "repair_written_MB": 2404.0, "repair_traffic_MB": 4808.0, "repair_read_per_lost_byte": 1.0, "repair_seconds": 32.5, "detection_seconds": 12.2, "degraded_after_repair": 0, "verified": "3/3"}
+[13:47:01] --- large / ec42: resetting cluster
+[13:47:27] create bucket large-ec42: {'bucket': 'large-ec42', 'policy': 'EC 4+2', 'write_quorum': 5, 'read_quorum': 4}
+[13:47:27] uploading datasets/large ...
+[13:49:14] uploaded 10 files, 4150 MB in 105.14 s (39.47 MB/s)
+[13:49:15] killing node4 and deleting its disk
+[13:50:26] repair job done: 860/860 chunks in 61.3 s, read 3432.1 MB, wrote 1315.1 MB
+[13:50:41] verified 3/3 sampled objects after repair
+[13:50:49] {"workload": "large", "scheme": "ec42", "policy": "EC 4+2", "files": 10, "logical_MB": 4150.0, "unique_MB": 3432.0, "physical_MB": 5148.2, "stored_blobs": 5160, "storage_overhead": 1.5, "upload_MBps": 39.47, "upload_files_per_s": 0.1, "lost_on_node4_MB": 1315.1, "lost_blobs": 1317, "repair_chunks": 860, "repair_failed": 0, "repair_read_MB": 3432.1, "repair_written_MB": 1315.1, "repair_traffic_MB": 4747.2, "repair_read_per_lost_byte": 2.61, "repair_seconds": 61.3, "detection_seconds": 10.4, "degraded_after_repair": 0, "verified": "3/3"}
+[13:50:53] -> benchmarks\redundancy_comparison.csv, benchmarks\redundancy_comparison.png

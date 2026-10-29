@@ -1,0 +1,5 @@
+workload,scheme,policy,files,logical_MB,unique_MB,physical_MB,stored_blobs,storage_overhead,upload_MBps,upload_files_per_s,lost_on_node4_MB,lost_blobs,repair_chunks,repair_failed,repair_read_MB,repair_written_MB,repair_traffic_MB,repair_read_per_lost_byte,repair_seconds,detection_seconds,degraded_after_repair,verified
+small,rep3,replication N=3,5000,124.4,113.3,339.8,13659,3.0,1.27,50.9,81.8,3283,3283,0,81.8,81.8,163.6,1.0,25.1,9.8,0,50/50
+small,ec42,EC 4+2,5000,124.4,113.3,171.0,27318,1.51,0.79,31.7,43.0,6867,4553,0,114.0,43.0,157.0,2.65,99.2,11.7,0,50/50
+large,rep3,replication N=3,10,4150.0,3432.0,10292.0,2579,2.999,41.84,0.1,2400.0,601,602,0,2404.0,2404.0,4808.0,1.0,32.5,12.2,0,3/3
+large,ec42,EC 4+2,10,4150.0,3432.0,5148.2,5160,1.5,39.47,0.1,1315.1,1317,860,0,3432.1,1315.1,4747.2,2.61,61.3,10.4,0,3/3

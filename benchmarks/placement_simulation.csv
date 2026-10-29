@@ -1,0 +1,11 @@
+scenario,vnodes,consistent_pct_moved,modulo_pct_moved,ideal_pct,load_imbalance_max_over_min
+add node5 (4->5),1,20.05,39.98,20.0,7.442
+add node5 (4->5),8,17.11,39.98,20.0,2.249
+add node5 (4->5),32,19.3,39.98,20.0,1.478
+add node5 (4->5),128,21.87,39.98,20.0,1.072
+add node5 (4->5),256,20.37,39.98,20.0,1.16
+remove node4 (4->3),1,31.37,24.77,25.0,7.442
+remove node4 (4->3),8,31.53,24.77,25.0,2.249
+remove node4 (4->3),32,21.44,24.77,25.0,1.478
+remove node4 (4->3),128,23.59,24.77,25.0,1.072
+remove node4 (4->3),256,23.99,24.77,25.0,1.16

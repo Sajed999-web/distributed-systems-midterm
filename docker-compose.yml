@@ -1,4 +1,103 @@
+x-storage-node: &storage-node
+  build:
+    context: .
+    dockerfile: storage_node/Dockerfile
+  image: dfs-storage-node
+  depends_on:
+    - metadata
+  restart: unless-stopped
+
+x-node-env: &node-env
+  DATA_DIR: /data
+  METADATA_URL: http://metadata:8000
+  HEARTBEAT_INTERVAL: "3"
+  ENABLE_FAULT_INJECTION: "1"
+
 services:
+  # ------------------------------------------------------------ storage layer
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: dfs
+      POSTGRES_PASSWORD: dfs
+      POSTGRES_DB: dfs
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dfs -d dfs"]
+      interval: 3s
+      retries: 20
+
+  metadata:
+    build:
+      context: .
+      dockerfile: metadata_service/Dockerfile
+    image: dfs-metadata
+    container_name: metadata
+    ports:
+      - "8100:8000"
+    environment:
+      DATABASE_URL: postgresql://dfs:dfs@postgres:5432/dfs
+      HEARTBEAT_TIMEOUT: "10"
+      REPLICATION_FACTOR: "3"
+      VNODES: "256"
+      DEFAULT_CHUNKING: fixed
+      FIXED_CHUNK_SIZE: "4194304"    # 4 MiB
+      CDC_MIN_SIZE: "1048576"        # 1 MiB
+      CDC_AVG_SIZE: "4194304"        # 4 MiB
+      CDC_MAX_SIZE: "16777216"       # 16 MiB
+      WRITE_QUORUM: "2"              # W  (W + R > N)
+      READ_QUORUM: "2"               # R
+      REPAIR_DELAY: "0"              # extra seconds to wait after a node is declared dead
+      REPAIR_SCAN_INTERVAL: "60"     # safety-net scan for degraded chunks
+      SCRUB_INTERVAL: "300"          # background scrub every 5 minutes
+      ORPHAN_GRACE: "120"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  node1:
+    <<: *storage-node
+    container_name: node1
+    ports: ["8001:8000"]
+    environment: { <<: *node-env, NODE_ID: node1, NODE_URL: "http://node1:8000" }
+    volumes: ["node1-data:/data"]
+
+  node2:
+    <<: *storage-node
+    container_name: node2
+    ports: ["8002:8000"]
+    environment: { <<: *node-env, NODE_ID: node2, NODE_URL: "http://node2:8000" }
+    volumes: ["node2-data:/data"]
+
+  node3:
+    <<: *storage-node
+    container_name: node3
+    ports: ["8003:8000"]
+    environment: { <<: *node-env, NODE_ID: node3, NODE_URL: "http://node3:8000" }
+    volumes: ["node3-data:/data"]
+
+  node4:
+    <<: *storage-node
+    container_name: node4
+    ports: ["8004:8000"]
+    environment: { <<: *node-env, NODE_ID: node4, NODE_URL: "http://node4:8000" }
+    volumes: ["node4-data:/data"]
+
+  # extra node used to test adding a node to the ring:
+  #   docker compose --profile scale up -d node5
+  node5:
+    <<: *storage-node
+    container_name: node5
+    profiles: ["scale"]
+    ports: ["8005:8000"]
+    environment: { <<: *node-env, NODE_ID: node5, NODE_URL: "http://node5:8000" }
+    volumes: ["node5-data:/data"]
+
+  # --------------------------------------------------- monitoring / messaging
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -27,3 +126,11 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+
+volumes:
+  node1-data:
+  node2-data:
+  node3-data:
+  node4-data:
+  node5-data:
+  pg-data:

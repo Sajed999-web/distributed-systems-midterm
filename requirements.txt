@@ -4,3 +4,12 @@ prometheus-client
 flask
 requests
 kubernetes
+fastapi
+uvicorn
+httpx
+pytest
+psycopg[binary]
+psycopg-pool
+numpy
+zfec
+matplotlib

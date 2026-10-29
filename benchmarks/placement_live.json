@@ -1,0 +1,136 @@
+{
+  "predict_add_node5": {
+    "nodes_before": [
+      "node1",
+      "node2",
+      "node3",
+      "node4"
+    ],
+    "nodes_after": [
+      "node1",
+      "node2",
+      "node3",
+      "node4",
+      "node5"
+    ],
+    "chunks": 4570,
+    "replicas": 13710,
+    "consistent_hashing": {
+      "replicas_moved": 2791,
+      "percent_moved": 20.36,
+      "chunks_with_changed_placement": 2791
+    },
+    "modulo_hashing": {
+      "replicas_moved": 5496,
+      "percent_moved": 40.09
+    },
+    "ideal_percent": 20.0
+  },
+  "predict_remove_node4": {
+    "nodes_before": [
+      "node1",
+      "node2",
+      "node3",
+      "node4"
+    ],
+    "nodes_after": [
+      "node1",
+      "node2",
+      "node3"
+    ],
+    "chunks": 4570,
+    "replicas": 13710,
+    "consistent_hashing": {
+      "replicas_moved": 3294,
+      "percent_moved": 24.03,
+      "chunks_with_changed_placement": 3294
+    },
+    "modulo_hashing": {
+      "replicas_moved": 3433,
+      "percent_moved": 25.04
+    },
+    "ideal_percent": 25.0
+  },
+  "rebalance_after_add_node5": {
+    "chunks_checked": 4570,
+    "chunks_moved": 2791,
+    "replicas_copied": 2791,
+    "bytes_moved": 112826233,
+    "replicas_removed": 2791,
+    "dry_run": false,
+    "ring": [
+      "node1",
+      "node2",
+      "node3",
+      "node4",
+      "node5"
+    ],
+    "percent_replicas_moved": 20.36,
+    "seconds": 25.25
+  },
+  "stats_with_node5": [
+    {
+      "node_id": "node1",
+      "chunks": 2793,
+      "bytes": 116635201
+    },
+    {
+      "node_id": "node2",
+      "chunks": 2785,
+      "bytes": 96445070
+    },
+    {
+      "node_id": "node3",
+      "chunks": 2582,
+      "bytes": 118034337
+    },
+    {
+      "node_id": "node4",
+      "chunks": 2759,
+      "bytes": 116705441
+    },
+    {
+      "node_id": "node5",
+      "chunks": 2791,
+      "bytes": 112826233
+    }
+  ],
+  "rebalance_after_removing_node5": {
+    "chunks_checked": 4570,
+    "chunks_moved": 2791,
+    "replicas_copied": 2791,
+    "bytes_moved": 112826233,
+    "replicas_removed": 2791,
+    "dry_run": false,
+    "ring": [
+      "node1",
+      "node2",
+      "node3",
+      "node4"
+    ],
+    "percent_replicas_moved": 20.36,
+    "seconds": 29.29
+  },
+  "stats_after": [
+    {
+      "node_id": "node1",
+      "chunks": 3455,
+      "bytes": 143377445
+    },
+    {
+      "node_id": "node2",
+      "chunks": 3560,
+      "bytes": 134613091
+    },
+    {
+      "node_id": "node3",
+      "chunks": 3401,
+      "bytes": 152114732
+    },
+    {
+      "node_id": "node4",
+      "chunks": 3294,
+      "bytes": 130541014
+    }
+  ]
+}

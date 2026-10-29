@@ -5,3 +5,9 @@ scrape_configs:
   - job_name: "prometheus"
     static_configs:
       - targets: ["localhost:9090"]
+
+  - job_name: "storage-nodes"
+    scrape_interval: 5s
+    metrics_path: /metrics/
+    static_configs:
+      - targets: ["node1:8000", "node2:8000", "node3:8000", "node4:8000"]
